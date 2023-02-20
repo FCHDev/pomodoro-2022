@@ -11,8 +11,6 @@ body {
     font-family: 'Bakbak One', cursive;
 }
 .container-chrono {
-    width: 30%;
-    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;

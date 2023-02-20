@@ -111,7 +111,7 @@ const Chrono = () => {
     return (
         <div
             className={
-                workingChrono ? "container-chrono bg-beige md:bg-beige-light anim-glow" : "container-chrono bg-beige md:bg-beige-light"
+                workingChrono ? "container-chrono xl:w-1/2 xl:h-[70vh] bg-beige md:bg-beige-light anim-glow" : "container-chrono xl:w-1/2 xl:h-[70vh]  bg-beige md:bg-beige-light"
             }
         >
             <audio className="hidden" ref={audioRef} src={alarm} preload="auto"></audio>

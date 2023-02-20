@@ -2,7 +2,9 @@ import React, {useEffect, useReducer, useRef, useState} from "react";
 import PauseImg from "../Images/pause.svg";
 import PlayImg from "../Images/play.svg";
 import ResetImg from "../Images/reset.svg";
-import alarm from "../Sound/alarm.mp3";
+// import clock from "../Images/clock.svg";
+import breakSound from "../Sound/timeForBreak.mp3";
+import workSound from "../Sound/timeForWork.mp3";
 
 const Chrono = () => {
     const [sessionTime, setSessionTime] = useState(1500);
@@ -14,7 +16,8 @@ const Chrono = () => {
     const [workingChrono, setWorkingChrono] = useState(false);
 
     const [playAudio, setPlayAudio] = useState(false);
-    const audioRef = useRef(null);
+    const breakRef = useRef(null);
+    const workRef = useRef(null);
 
 
     // eslint-disable-next-line
@@ -57,17 +60,11 @@ const Chrono = () => {
     }, [workingChrono]);
     useEffect(() => {
         if (sessionTime === 0) {
-            audioRef.current.play();
+            breakRef.current.play();
             setPlayAudio(true);
         } else if (breakTime === 0) {
-            audioRef.current.play();
+            workRef.current.play();
             setPlayAudio(true);
-        } else if (playAudio) {
-            setTimeout(() => {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-            setPlayAudio(false);
-            }, 3000);
         }
     }, [sessionTime, breakTime, playAudio]);
 
@@ -114,9 +111,13 @@ const Chrono = () => {
                 workingChrono ? "container-chrono xl:w-1/2 xl:h-[70vh] bg-beige md:bg-beige-light anim-glow" : "container-chrono xl:w-1/2 xl:h-[70vh]  bg-beige md:bg-beige-light"
             }
         >
-            <audio className="hidden" ref={audioRef} src={alarm} preload="auto"></audio>
+            <audio className="hidden" ref={breakRef} src={breakSound} preload="auto"></audio>
+            <audio className="hidden" ref={workRef} src={workSound} preload="auto"></audio>
 
-            <h4 className="font-bold text-5xl text-bleu">CHRONO APP</h4>
+            <h4 className="font-bold text-5xl text-bleu">
+                CHRONO APP
+            </h4>
+            {/*<img className="h-[60px] w-auto" src={clock} alt="chronometre"/>*/}
             <div className="container-config">
                 <div className="box-btns session">
                     <button
